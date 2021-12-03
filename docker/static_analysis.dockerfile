@@ -6,17 +6,17 @@ ENV CC=clang
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y build-essential \
-    python3 python3-pip git clang-12 clang-tidy-12 wget libssl-dev ninja-build && \
+    python3 python3-pip git clang-13 clang-tidy-13 wget libssl-dev ninja-build && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 RUN pip3 install PyGithub
 
 RUN ln -s \
-    "$(which clang++-12)" \
+    "$(which clang++-13)" \
     /usr/bin/clang++
 
 RUN ln -s \
-    "$(which clang-12)" \
+    "$(which clang-13)" \
     /usr/bin/clang
 
 RUN ln -s \
