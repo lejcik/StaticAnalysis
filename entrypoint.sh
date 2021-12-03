@@ -28,9 +28,12 @@ cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON "$INPUT_CMAKE_ARGS" ..
 
 files_to_check=$(python3 /get_files_to_check.py -exclude="$INPUT_EXCLUDE_DIR" -json="compile_commands.json")
 
+echo "== clang-tidy config:"
+eval clang-tidy -dump-config
+
 # Excludes for clang-tidy are handled in python script
-echo "== Running clang analysis..."
-eval clang-tidy-12 "$INPUT_CLANG_TIDY_ARGS" -p "$(pwd)" "$files_to_check" -- >"clang_tidy.txt"
+echo "== Running clang analysis... (clang-tidy \"$INPUT_CLANG_TIDY_ARGS\" -p \"$(pwd)\" \"$files_to_check\")"
+eval clang-tidy "$INPUT_CLANG_TIDY_ARGS" -p "$(pwd)" "$files_to_check" -- >"clang_tidy.txt"
 echo "== Done."
 
 echo "== Running cppcheck analysis..."
