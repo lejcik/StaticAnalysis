@@ -19,7 +19,7 @@ with open(file_name, "r") as f:
         if not CHECK_FOR_PREFIX or not p["file"].startswith(exclude_prefix)
     ]
     for p in file_list:
-        if not result:
+        if result:
             result += " "
         result += p
 
