@@ -9,6 +9,8 @@ file_name = parser.parse_args().json
 exclude_prefix = parser.parse_args().exclude
 CHECK_FOR_PREFIX = len(exclude_prefix) > 0
 
+result = ""
+
 with open(file_name, "r") as f:
     data = json.load(f)
     file_list = [
@@ -17,4 +19,8 @@ with open(file_name, "r") as f:
         if not CHECK_FOR_PREFIX or not p["file"].startswith(exclude_prefix)
     ]
     for p in file_list:
-        print(p)
+        if not result:
+            result += ""
+        result += p
+
+print(result)
