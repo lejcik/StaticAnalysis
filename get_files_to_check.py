@@ -20,7 +20,7 @@ with open(file_name, "r") as f:
     ]
     for p in file_list:
         if not result:
-            result += ""
+            result += " "
         result += p
 
 print(result)
